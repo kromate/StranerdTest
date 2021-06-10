@@ -9,12 +9,14 @@
 //     'date': Date,
 //     'sender_id': string
 //    }
+
+const userID = 1234
 var messages = [
     {
         'id': 'qwertydfghjj',
         'body': 'tthis is a message',
         'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 1234
+        'sender_id': 123
        },
     {
         'id': 'qwertydfghjj',
@@ -26,7 +28,7 @@ var messages = [
         'id': 'qwertydfghjj',
         'body': 'tthis is a message',
         'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 1234
+        'sender_id': 123
        },
     {
         'id': 'qwertydfghjj',
@@ -38,14 +40,25 @@ var messages = [
         'id': 'qwertydfghjj',
         'body': 'tthis is a message',
         'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 1234
+        'sender_id': 123
        }
 
 ];
 
-var random = document.querySelector('#random');
+let ArrangedMessages = (data)=>{
 
-random.innerHTML = memes[Math.floor(Math.random() * memes.length)];
+    data.forEach((val)=>{
+        console.log(val.date.split(" "));
+        val.date.split(":")
+    })
+}
+
+
+
+
+// var random = document.querySelector('#random');
+
+// random.innerHTML = messages[2].body;
 
 /* Time */
 
@@ -69,6 +82,21 @@ var conversation = document.querySelector('.conversation-container');
 
 form.addEventListener('submit', newMessage);
 
+function appendMessages(data){
+    data.forEach((val)=>{
+        console.log(val);
+        if (val.sender_id === userID ){
+            conversation.appendChild(buildMessage(val.body, 'sent'));
+        }else{
+            conversation.appendChild(buildMessage(val.body, 'received'));
+        }
+
+    })
+}
+
+appendMessages(messages)
+
+
 
 function newMessage(e) {
 	var input = e.target.input;
@@ -85,10 +113,10 @@ function newMessage(e) {
 	e.preventDefault();
 }
 
-function buildMessage(text) {
+function buildMessage(text, attr) {
 	var element = document.createElement('div');
 
-	element.classList.add('message', 'sent');
+	element.classList.add('message', attr);
 
 	element.innerHTML = text +
 		'<span class="metadata">' +
