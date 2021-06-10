@@ -102,7 +102,7 @@ function newMessage(e) {
 	var input = e.target.input;
 
 	if (input.value) {
-		var message = buildMessage(input.value);
+		var message = buildMessage(input.value, 'sent');
 		conversation.appendChild(message);
 		animateMessage(message);
 	}
