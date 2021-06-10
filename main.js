@@ -10,50 +10,101 @@
 //     'sender_id': string
 //    }
 
-const userID = 1234
+const userID = 1
 var messages = [
     {
-        'id': 'qwertydfghjj',
-        'body': 'tthis is a message',
-        'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 123
-       },
+    body: "Message 1",
+    date: "2021-06-08T15:57:08.696Z",
+    id: "1",
+    sender_id: 1
+    },
     {
-        'id': 'qwertydfghjj',
-        'body': 'tthis is a message',
-        'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 1234
-       },
+    body: "Message 2",
+    date: "2021-06-08T15:58:08.696Z",
+    id: "2",
+    sender_id: 2
+    },
     {
-        'id': 'qwertydfghjj',
-        'body': 'tthis is a message',
-        'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 123
-       },
+    body: "Message 3",
+    date: "2021-06-08T23:24:08.696Z",
+    id: "3",
+    sender_id: 2
+    },
     {
-        'id': 'qwertydfghjj',
-        'body': 'tthis is a message',
-        'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 1234
-       },
+    body: "Message 4",
+    date: "2021-06-09T02:18:08.696Z",
+    id: "4",
+    sender_id: 1
+    },
     {
-        'id': 'qwertydfghjj',
-        'body': 'tthis is a message',
-        'date': 'Tue Jun 08 2021 22:20:25',
-        'sender_id': 123
-       }
-
-];
+    body: "Message 5",
+    date: "2021-06-09T12:04:08.696Z",
+    id: "5",
+    sender_id: 1
+    },
+    {
+    body: "Message 6",
+    date: "2021-06-09T13:19:08.696Z",
+    id: "6",
+    sender_id: 1
+    },
+    {
+    body: "Message 7",
+    date: "2021-06-10T01:01:08.696Z",
+    id: "7",
+    sender_id: 2
+    },
+    {
+    body: "Message 8",
+    date: "2021-06-10T01:01:38.696Z",
+    id: "8",
+    sender_id: 2
+    },
+    {
+    body: "Message 9",
+    date: "2021-06-10T01:23:08.696Z",
+    id: "9",
+    sender_id: 1
+    },
+    {
+    body: "Message 10",
+    date: "2021-06-10T17:00:08.696Z",
+    id: "10",
+    sender_id: 2
+    }
+    ];
 
 let ArrangedMessages = (data)=>{
 
     data.forEach((val)=>{
-        console.log(val.date.split(" "));
+        // console.log(val.date.split(" "));
         val.date.split(":")
     })
 }
 
+const sortedActivities = messages.sort(function(a, b) {
+    var dateA = new Date(a.date), dateB = new Date(b.date);
+    // console.log(dateA - dateB);
+    return dateA - dateB;
+});
 
+// const sortedActivities = messages.slice().sort((a, b) => b.date - a.date)
+// console.log(sortedActivities);
+
+ArrangedMessages(messages)
+
+
+let GroupedMessages = {}
+messages.forEach((msg) => {
+  const date = msg.date.split('T')[0]
+  if (GroupedMessages[date]) {
+    GroupedMessages[date].push(msg);
+  } else {
+    GroupedMessages[date] = [msg];
+  }
+})
+
+console.log(GroupedMessages);
 
 
 // var random = document.querySelector('#random');
