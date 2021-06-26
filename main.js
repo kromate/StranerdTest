@@ -99,12 +99,23 @@ messages.forEach((msg) => {
   const date = msg.date.split('T')[0]
   if (GroupedMessages[date]) {
     GroupedMessages[date].push(msg);
+
   } else {
     GroupedMessages[date] = [msg];
   }
 })
 
 console.log(GroupedMessages);
+let Dates = Object.keys(GroupedMessages);
+console.log(Dates);
+
+// ArrayOfObjectsSortedByDate
+let  ArrayOfObjectsSortedByDate = []
+Dates.forEach((item)=>{
+    ArrayOfObjectsSortedByDate.push({date:item, messages:GroupedMessages[item]})
+})
+
+console.log(ArrayOfObjectsSortedByDate);
 
 
 // var random = document.querySelector('#random');
@@ -135,7 +146,7 @@ form.addEventListener('submit', newMessage);
 
 function appendMessages(data){
     data.forEach((val)=>{
-        console.log(val);
+        // console.log(val);
         if (val.sender_id === userID ){
             conversation.appendChild(buildMessage(val.body, 'sent'));
         }else{
